@@ -9,7 +9,7 @@
   {{/each}}
 </ul>
 
-{{#file-upload name="media" onfileadd="uploadMedia" as |queue|}}
+{{#file-upload name="media" onfileadd=(route-action "uploadMedia") as |queue|}}
   <a class="button">
     {{#if queue.files.length}}
       Uploading...

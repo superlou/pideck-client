@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { inject } from '@ember/service';
 import { later } from '@ember/runloop';
+import { computed } from '@ember/object';
 
 export default Service.extend({
   ajax: inject(),
@@ -10,8 +11,18 @@ export default Service.extend({
   duration: null,
   volume: null,
 
+  api_url: 'http://loupi1:8910/api',
+
+  upload_url: computed('api_url', function() {
+    return `${this.get('api_url')}/media-files/upload`
+  }),
+
+  player_url: computed('api_url', function() {
+    return `${this.get('api_url')}/player`
+  }),
+
   update() {
-    this.get('ajax').request('http://loupi1:8910/api/player').then((result) => {
+    this.get('ajax').request(this.get('player_url')).then((result) => {
       this.set('status', result.status);
       this.set('source', result.source);
       this.set('position', result.position);
@@ -31,7 +42,7 @@ export default Service.extend({
   },
 
   togglePause() {
-    this.get('ajax').request('http://loupi1:8910/api/player', {
+    this.get('ajax').request(this.get('player_url'), {
       method: 'POST',
       data: {
         action: 'toggle_pause',
@@ -40,7 +51,7 @@ export default Service.extend({
   },
 
   stop() {
-    this.get('ajax').request('http://loupi1:8910/api/player', {
+    this.get('ajax').request(this.get('player_url'), {
       method: 'POST',
       data: {
         action: 'stop',
@@ -49,12 +60,12 @@ export default Service.extend({
   },
 
   play(source) {
-    this.get('ajax').request('http://loupi1:8910/api/player', {
+    this.get('ajax').request(this.get('player_url'), {
       method: 'POST',
       data: {
         action: 'play',
         source: source,
       }
     });
-  }
+  },
 });

@@ -16,16 +16,13 @@ export default Route.extend({
 
     uploadMedia(file) {
       this.get('uploadMediaFile').perform(file);
-    }
-  },
-
-  uploadMedia(file) {
-    console.log('test');
+    },
   },
 
   uploadMediaFile: task(function * (file) {
     try {
-      let response = yield file.upload('http://loupi1:8910/media/upload');
+      let response = yield file.upload(this.get('player.upload_url'));
+      this.set('model', this.store.findAll('media-file'));
     } catch (e) {
       console.log('Error uploading')
     }
