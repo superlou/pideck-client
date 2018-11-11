@@ -14,6 +14,10 @@ export default Route.extend({
       this.get('player').play(source);
     },
 
+    delete(mediaFile) {
+      mediaFile.destroyRecord();
+    },
+
     uploadMedia(file) {
       this.get('uploadMediaFile').perform(file);
     },
@@ -21,7 +25,7 @@ export default Route.extend({
 
   uploadMediaFile: task(function * (file) {
     try {
-      let response = yield file.upload(this.get('player.upload_url'));
+      let response = yield file.upload(this.get('player.uploadUrl'));
       this.set('model', this.store.findAll('media-file'));
     } catch (e) {
       console.log('Error uploading')

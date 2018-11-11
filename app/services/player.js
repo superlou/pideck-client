@@ -13,16 +13,20 @@ export default Service.extend({
 
   api_url: 'http://loupi1:8910/api',
 
-  upload_url: computed('api_url', function() {
+  mediaFilesUrl: computed('api_url', function() {
+    return `${this.get('api_url')}/media-files`
+  }),
+
+  uploadUrl: computed('api_url', function() {
     return `${this.get('api_url')}/media-files/upload`
   }),
 
-  player_url: computed('api_url', function() {
+  playerUrl: computed('api_url', function() {
     return `${this.get('api_url')}/player`
   }),
 
   update() {
-    this.get('ajax').request(this.get('player_url')).then((result) => {
+    this.get('ajax').request(this.get('playerUrl')).then((result) => {
       this.set('status', result.status);
       this.set('source', result.source);
       this.set('position', result.position);
@@ -42,7 +46,7 @@ export default Service.extend({
   },
 
   togglePause() {
-    this.get('ajax').request(this.get('player_url'), {
+    this.get('ajax').request(this.get('playerUrl'), {
       method: 'POST',
       data: {
         action: 'toggle_pause',
@@ -51,7 +55,7 @@ export default Service.extend({
   },
 
   stop() {
-    this.get('ajax').request(this.get('player_url'), {
+    this.get('ajax').request(this.get('playerUrl'), {
       method: 'POST',
       data: {
         action: 'stop',
@@ -60,12 +64,12 @@ export default Service.extend({
   },
 
   play(source) {
-    this.get('ajax').request(this.get('player_url'), {
+    this.get('ajax').request(this.get('playerUrl'), {
       method: 'POST',
       data: {
         action: 'play',
         source: source,
       }
     });
-  },
+  }
 });
