@@ -13,7 +13,7 @@
 {{#file-upload name="media" onfileadd=(route-action "uploadMedia") as |queue|}}
   <a class="button">
     {{#if queue.files.length}}
-      Uploading...
+      Uploading... {{queue.progress}}%
     {{else}}
       Upload file
     {{/if}}
