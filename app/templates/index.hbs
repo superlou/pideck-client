@@ -1,1 +1,7 @@
 <h1>Media</h1>
+
+<ul>
+  {{#each model as |mediaFile|}}
+    <li>{{mediaFile.source}}</li>
+  {{/each}}
+</ul>

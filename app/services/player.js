@@ -28,5 +28,23 @@ export default Service.extend({
   init() {
     this._super();
     this.update();
+  },
+
+  togglePause() {
+    this.get('ajax').request('http://loupi1:8910/api/player', {
+      method: 'POST',
+      data: {
+        action: 'toggle_pause',
+      }
+    });
+  },
+
+  stop() {
+    this.get('ajax').request('http://loupi1:8910/api/player', {
+      method: 'POST',
+      data: {
+        action: 'stop',
+      }
+    });
   }
 });

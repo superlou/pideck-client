@@ -4,7 +4,9 @@ import { inject } from '@ember/service';
 export default Route.extend({
   player: inject(),
 
-  model: function() {
-    return this.store.findAll('media-file');
+  actions: {
+    togglePause() {
+      console.log('here route')
+    }
   }
 });

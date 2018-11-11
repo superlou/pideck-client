@@ -7,5 +7,15 @@ export default Component.extend({
 
   remaining: computed('player.position', 'player.duration', function() {
     return this.get('player.duration') - this.get('player.position');
-  })
+  }),
+
+  actions: {
+    togglePause() {
+      this.get('player').togglePause();
+    },
+
+    stop() {
+      this.get('player').stop();
+    }
+  }
 });
