@@ -6,5 +6,11 @@ export default Route.extend({
 
   model: function() {
     return this.store.findAll('media-file');
+  },
+
+  actions: {
+    play(source) {
+      this.get('player').play(source);
+    }
   }
 });

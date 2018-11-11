@@ -46,5 +46,15 @@ export default Service.extend({
         action: 'stop',
       }
     });
+  },
+
+  play(source) {
+    this.get('ajax').request('http://loupi1:8910/api/player', {
+      method: 'POST',
+      data: {
+        action: 'play',
+        source: source,
+      }
+    });
   }
 });

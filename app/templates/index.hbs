@@ -2,6 +2,9 @@
 
 <ul>
   {{#each model as |mediaFile|}}
-    <li>{{mediaFile.source}}</li>
+    <li>
+      {{mediaFile.source}}
+      <button {{action "play" mediaFile.source}}>Play</button>
+    </li>
   {{/each}}
 </ul>
