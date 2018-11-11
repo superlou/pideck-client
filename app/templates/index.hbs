@@ -8,3 +8,13 @@
     </li>
   {{/each}}
 </ul>
+
+{{#file-upload name="media" onfileadd="uploadMedia" as |queue|}}
+  <a class="button">
+    {{#if queue.files.length}}
+      Uploading...
+    {{else}}
+      Upload file
+    {{/if}}
+  </a>
+{{/file-upload}}
