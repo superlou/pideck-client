@@ -1,8 +1,24 @@
-{{player.status}}
-{{player.source}}
-{{format-seconds player.position}}
-{{format-seconds player.duration}}
-{{format-seconds remaining}}
+<div class="header">
+  <div class="now-playing">
+  {{#if player.isLoaded}}
+    {{player.source}}
+  {{else}}
+    (no file loaded)
+  {{/if}}
+  </div>
 
-<button {{action "togglePause"}}>Pause</button>
-<button {{action "stop"}}>Stop</button>
+  <div class="playback-controls">
+    <button {{action "togglePause"}} disabled={{player.isNotLoaded}}>
+      {{#if player.isPlaying}}
+        {{fa-icon "pause"}}
+      {{else}}
+        {{fa-icon "play"}}
+      {{/if}}
+    </button>
+    <button {{action "stop"}} disabled={{player.isNotLoaded}}>
+      {{fa-icon "stop"}}
+    </button>
+  </div>
+</div>
+
+{{playback-bar duration=player.duration position=player.position}}

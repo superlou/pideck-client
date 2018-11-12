@@ -11,6 +11,22 @@ export default Service.extend({
   duration: null,
   volume: null,
 
+  isLoaded: computed('status', function() {
+    return ['Playing', 'Paused'].includes(this.get('status'));
+  }),
+
+  isNotLoaded: computed('isLoaded', function() {
+    return !this.get('isLoaded');
+  }),
+
+  isPlaying: computed('status', function() {
+    return this.get('status') === 'Playing';
+  }),
+
+  isPaused: computed('status', function() {
+    return this.get('status') === 'Paused';
+  }),
+
   api_url: 'http://loupi1:8910/api',
 
   mediaFilesUrl: computed('api_url', function() {

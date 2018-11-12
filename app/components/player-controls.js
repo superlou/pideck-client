@@ -4,11 +4,8 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   player: inject(),
-
-  remaining: computed('player.position', 'player.duration', function() {
-    return this.get('player.duration') - this.get('player.position');
-  }),
-
+  classNames: ['player-controls'],
+  
   actions: {
     togglePause() {
       this.get('player').togglePause();

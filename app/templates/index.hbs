@@ -1,21 +1,26 @@
 <h1>Media</h1>
 
+<div id="upload">
+  {{#file-upload name="media" onfileadd=(route-action "uploadMedia") as |queue|}}
+    <a class="button">
+      {{fa-icon "upload"}}
+      {{#if queue.files.length}}
+        Uploading... {{queue.progress}}%
+      {{else}}
+        Upload file
+      {{/if}}
+    </a>
+  {{/file-upload}}
+</div>
+
 <ul>
   {{#each model as |mediaFile|}}
     <li>
       {{mediaFile.source}}
-      <button {{action "play" mediaFile.source}}>Play</button>
-      <button {{action "delete" mediaFile}}>Delete</button>
+      <div class="actions">
+        <button {{action "play" mediaFile.source}}>{{fa-icon "play"}}</button>
+        <button {{action "delete" mediaFile}}>{{fa-icon "trash"}}</button>
+      </div>
     </li>
   {{/each}}
 </ul>
-
-{{#file-upload name="media" onfileadd=(route-action "uploadMedia") as |queue|}}
-  <a class="button">
-    {{#if queue.files.length}}
-      Uploading... {{queue.progress}}%
-    {{else}}
-      Upload file
-    {{/if}}
-  </a>
-{{/file-upload}}
