@@ -1,8 +1,18 @@
 body {
-  background: #353a50;
   font-family: sans-serif;
-  padding: 20px;
+  padding: 0px;
   margin: 0px;
+  background: #2c3145;
+}
+
+#player_controls_bg {
+  padding: 20px;
+  background: #353a50;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1));
+}
+
+#content {
+  padding: 20px;
   color: white;
 }
 
@@ -11,10 +21,19 @@ ul {
   padding: 0px;
 
   li {
-    margin: 0.4em 0px;
-    padding: 20px;
-    background: rgba(48, 48, 54, 0.8);
-    border-bottom: 1px solid rgba(26, 26, 28, 0.4);
+    margin: 0.2em 0px;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+
+    &:first-child {
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  button {
+    border: 1px;
+    border-radius: 4px;
+    padding: 4px 8px;
   }
 }
 
@@ -22,12 +41,12 @@ button {
   border: 1px;
   border-radius: 4px;
   padding: 8px 16px;
+  margin: 0px 4px;
 }
 
 .actions {
   float: right;
   position: relative;
-  top: -6px;
 }
 
 .player-controls {
