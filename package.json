@@ -45,6 +45,7 @@
     "ember-resolver": "^5.0.1",
     "ember-route-action-helper": "^2.0.6",
     "ember-source": "~3.5.0",
+    "ember-websockets": "^7.2.0",
     "eslint-plugin-ember": "^5.2.0",
     "file-upload": "0.0.0",
     "loader.js": "^4.7.0",

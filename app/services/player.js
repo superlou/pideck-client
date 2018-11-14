@@ -5,6 +5,8 @@ import { computed } from '@ember/object';
 
 export default Service.extend({
   ajax: inject(),
+  websockets: inject('socket-io'),
+  socketRef: null,
   status: 'unknown',
   source: null,
   position: null,
@@ -41,24 +43,27 @@ export default Service.extend({
     return `${this.get('api_url')}/player`
   }),
 
-  update() {
-    this.get('ajax').request(this.get('playerUrl')).then((result) => {
+  init() {
+    this._super();
+
+    const socket = this.websockets.socketFor('ws://loupi1:8910')
+    socket.on('connect', this.socketConnectHandler, this);
+    socket.on('message', this.socketMessageHandler, this);
+    this.set('socketRef', socket);
+  },
+
+  socketConnectHandler() {
+  },
+
+  socketMessageHandler(data) {
+    if (data['player_status']) {
+      var result = data['player_status'];
       this.set('status', result.status);
       this.set('source', result.source);
       this.set('position', result.position);
       this.set('duration', result.duration);
       this.set('volume', result.volume);
-    }, (err) => {
-      this.set('status', 'unknown');
-      this.set('source', null);
-    });
-
-    later(this, this.update, 100);
-  },
-
-  init() {
-    this._super();
-    this.update();
+    }
   },
 
   togglePause() {
