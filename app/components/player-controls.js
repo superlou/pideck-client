@@ -5,7 +5,7 @@ import { computed } from '@ember/object';
 export default Component.extend({
   player: inject(),
   classNames: ['player-controls'],
-  
+
   actions: {
     togglePause() {
       this.get('player').togglePause();
@@ -13,6 +13,10 @@ export default Component.extend({
 
     stop() {
       this.get('player').stop();
+    },
+
+    seek(fraction) {
+      this.get('player').seekFraction(fraction);
     }
   }
 });

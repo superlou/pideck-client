@@ -92,5 +92,15 @@ export default Service.extend({
         source: source,
       }
     });
+  },
+
+  seekFraction(fraction) {
+    this.get('ajax').request(this.get('playerUrl'), {
+      method: 'POST',
+      data: {
+        action: 'seek_fraction',
+        fraction: fraction,
+      }
+    });
   }
 });
