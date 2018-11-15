@@ -29,24 +29,28 @@ export default Service.extend({
     return this.get('status') === 'Paused';
   }),
 
-  api_url: 'http://loupi1:8910/api',
+  apiDomain: 'loupi1:8910',
 
-  mediaFilesUrl: computed('api_url', function() {
-    return `${this.get('api_url')}/media-files`
+  apiUrl: computed('apiDomain', function() {
+    return `http://${this.get('apiDomain')}/api`
   }),
 
-  uploadUrl: computed('api_url', function() {
-    return `${this.get('api_url')}/media-files/upload`
+  mediaFilesUrl: computed('apiUrl', function() {
+    return `${this.get('apiUrl')}/media-files`
   }),
 
-  playerUrl: computed('api_url', function() {
-    return `${this.get('api_url')}/player`
+  uploadUrl: computed('apiUrl', function() {
+    return `${this.get('apiUrl')}/media-files/upload`
+  }),
+
+  playerUrl: computed('apiUrl', function() {
+    return `${this.get('apiUrl')}/player`
   }),
 
   init() {
     this._super();
 
-    const socket = this.websockets.socketFor('ws://loupi1:8910')
+    const socket = this.websockets.socketFor(`ws://${this.get('apiDomain')}`)
     socket.on('connect', this.socketConnectHandler, this);
     socket.on('message', this.socketMessageHandler, this);
     this.set('socketRef', socket);
