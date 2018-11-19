@@ -88,6 +88,7 @@ button {
 .playback-bar {
 
   &.is-loaded .duration-bar {
+    cursor: pointer;
     background: white;
   }
 
@@ -107,6 +108,7 @@ button {
     transition: background 0.2s;
 
     .position-bar {
+      cursor: pointer;
       background: rgb(75, 101, 166);
       height: 16px;
       transition: background 0.2s;
