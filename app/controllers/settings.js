@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import { inject } from '@ember/service';
-import { alias } from '@ember/object/computed';
 
 export default Controller.extend({
   player: inject(),

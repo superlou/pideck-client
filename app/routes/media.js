@@ -22,7 +22,7 @@ export default Route.extend({
       this.get('uploadMediaFile').perform(file);
     },
 
-    error(error, transition) {
+    error(/*error, transition*/) {
       this.transitionTo('settings');
     }
   },
