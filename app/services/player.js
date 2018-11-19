@@ -1,6 +1,5 @@
 import Service from '@ember/service';
 import { inject } from '@ember/service';
-import { later } from '@ember/runloop';
 import { computed } from '@ember/object';
 
 export default Service.extend({
@@ -12,6 +11,7 @@ export default Service.extend({
   position: null,
   duration: null,
   volume: null,
+  isConnected: false,
 
   isLoaded: computed('status', function() {
     return ['Playing', 'Paused'].includes(this.get('status'));
@@ -29,7 +29,7 @@ export default Service.extend({
     return this.get('status') === 'Paused';
   }),
 
-  apiDomain: 'loupi1:8910',
+  apiDomain: '127.0.0.1:8910',
 
   apiUrl: computed('apiDomain', function() {
     return `http://${this.get('apiDomain')}/api`
@@ -50,13 +50,37 @@ export default Service.extend({
   init() {
     this._super();
 
+    let apiDomain = localStorage.getItem('apiDomain');
+    if (apiDomain) {
+      this.set('apiDomain', apiDomain);
+    }
+
     const socket = this.websockets.socketFor(`ws://${this.get('apiDomain')}`)
     socket.on('connect', this.socketConnectHandler, this);
+    socket.on('disconnect', this.socketDisconnectHandler, this);
+    socket.on('message', this.socketMessageHandler, this);
+    this.set('socketRef', socket);
+  },
+
+  changeApiDomain(newApiDomain) {
+    this.get('socketRef').close();
+
+    this.set('apiDomain', newApiDomain);
+    localStorage.setItem('apiDomain', newApiDomain);
+
+    const socket = this.websockets.socketFor(`ws://${this.get('apiDomain')}`)
+    socket.on('connect', this.socketConnectHandler, this);
+    socket.on('disconnect', this.socketDisconnectHandler, this);
     socket.on('message', this.socketMessageHandler, this);
     this.set('socketRef', socket);
   },
 
   socketConnectHandler() {
+    this.set('isConnected', true);
+  },
+
+  socketDisconnectHandler() {
+    this.set('isConnected', false);
   },
 
   socketMessageHandler(data) {

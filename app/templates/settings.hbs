@@ -1,0 +1,23 @@
+<h1>Settings</h1>
+
+{{#if player.isConnected}}
+  <div class="message message-good">
+    {{fa-icon "check-circle"}} PiDeck connection OK.
+    Return to {{#link-to 'media'}}Media{{/link-to}}.
+  </div>
+{{else}}
+  <div class="message message-bad">
+    {{fa-icon "times-circle"}} PiDeck connection failed.
+    <ul>
+      <li>Verify that the Raspberry Pi is powered.</li>
+      <li>Verify that the Raspberry Pi has a network connection.</li>
+      <li>Update the API Domain to match the Raspberry Pi.</li>
+    </ul>
+  </div>
+{{/if}}
+
+<div>
+  API Domain:
+  {{input value=(mut apiDomain)}}
+  <button {{action "changeApiDomain"}}>Save</button>
+</div>

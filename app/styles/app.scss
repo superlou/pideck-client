@@ -3,6 +3,16 @@ body {
   padding: 0px;
   margin: 0px;
   background: #2c3145;
+  color: white;
+}
+
+a, a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  text-decoration: underline;
 }
 
 #player_controls_bg {
@@ -16,7 +26,11 @@ body {
   color: white;
 }
 
-ul {
+#settings {
+  float: right;
+}
+
+ul.media-list {
   list-style-type: none;
   padding: 0px;
 
@@ -120,5 +134,29 @@ button {
       width: 33.33333%;
       text-align: right;
     }
+  }
+}
+
+.message {
+  padding: 1em;
+  margin: 1em;
+}
+
+.message-bad {
+  background: rgb(231, 156, 156);
+  color: rgb(80, 18, 18);
+
+  a, a:visited {
+    color: black;
+  }
+}
+
+.message-good {
+  background: rgb(166, 231, 156);
+  color: rgb(26, 78, 18);
+
+  a, a:visited {
+    color: black;
+    text-decoration: underline;
   }
 }
