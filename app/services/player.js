@@ -47,6 +47,10 @@ export default Service.extend({
     return `${this.get('apiUrl')}/player`
   }),
 
+  displayUrl: computed('apiUrl', function() {
+    return `${this.get('apiUrl')}/display`
+  }),
+
   init() {
     this._super();
 
@@ -128,6 +132,15 @@ export default Service.extend({
       data: {
         action: 'set_volume',
         volume: volume,
+      }
+    });
+  },
+
+  set_display_mode(mode) {
+    this.get('ajax').request(this.get('displayUrl'), {
+      method: 'POST',
+      data: {
+        mode: mode,
       }
     });
   },

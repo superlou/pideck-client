@@ -6,5 +6,11 @@ export default Route.extend({
 
   setupController(controller, /*model*/) {
     controller.set('apiDomain', this.get('player.apiDomain'));
+  },
+
+  actions: {
+    setDisplayMode(mode) {
+      this.get('player').set_display_mode(mode);
+    }
   }
 });

@@ -16,8 +16,16 @@
   </div>
 {{/if}}
 
-<div>
-  API Domain:
+<div class="settings-row">
+  <span class="settings-label">API Domain:</span>
   {{input value=(mut apiDomain)}}
   <button {{action "changeApiDomain"}}>Save</button>
+</div>
+<div class="settings-row">
+  <span class="settings-label">Display Mode:</span>
+  <ul class="button-group">
+    <li><button {{action "setDisplayMode" "off"}}>Off</button></li>
+    <li><button {{action "setDisplayMode" "blank"}}>Blank</button></li>
+    <li><button {{action "setDisplayMode" "desktop"}}>Desktop</button></li>
+  </ul>
 </div>
