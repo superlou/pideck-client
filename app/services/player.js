@@ -10,7 +10,7 @@ export default Service.extend({
   source: null,
   position: null,
   duration: null,
-  volume: null,
+  volume: 0,
   isConnected: false,
 
   isLoaded: computed('status', function() {
@@ -118,6 +118,16 @@ export default Service.extend({
       data: {
         action: 'play',
         source: source,
+      }
+    });
+  },
+
+  set_volume(volume) {
+    this.get('ajax').request(this.get('playerUrl'), {
+      method: 'POST',
+      data: {
+        action: 'set_volume',
+        volume: volume,
       }
     });
   },
