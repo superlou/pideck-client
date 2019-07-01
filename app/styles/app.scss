@@ -4,15 +4,7 @@ body {
   margin: 0px;
   background: #2c3145;
   color: white;
-}
-
-#volume_controls {
-  float: right;
-
-  button {
-    width: 60px;
-    font-size: 18px;
-  }
+  position: relative;
 }
 
 ul.button-group {
@@ -55,12 +47,18 @@ a:hover, a:active {
 }
 
 #player_controls_bg {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
   padding: 20px;
   background: #353a50;
   filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1));
+  z-index: 1;
 }
 
 #content {
+  margin-top: 150px;
   padding: 20px;
   color: white;
 }
@@ -111,6 +109,10 @@ button {
 
   &:active {
     background: gray;
+  }
+
+  &:active[disabled] {
+    background: white;
   }
 }
 

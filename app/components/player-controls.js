@@ -16,6 +16,29 @@ export default Component.extend({
 
     seek(fraction) {
       this.get('player').seekFraction(fraction);
+    },
+
+    volumeUp() {
+      let volume = this.get('player.volume');
+
+      volume *= 1.43;
+
+      if (volume > 2) {
+        volume = 2;
+      } else if (volume < 0.01) {
+        volume = 0.01;
+      }
+
+      this.get('player').set_volume(volume);
+    },
+
+    volumeDown() {
+      let volume = this.get('player.volume');
+      this.get('player').set_volume(volume * 0.7);
+    },
+
+    volumeMute() {
+      this.get('player').set_volume(0);
     }
   }
 });

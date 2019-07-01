@@ -18,6 +18,12 @@
     <button {{action "stop"}} disabled={{player.isNotLoaded}}>
       {{fa-icon "stop"}}
     </button>
+
+    <ul class="button-group">
+      <li><button {{action "volumeMute"}} disabled={{player.isNotLoaded}}>{{fa-icon "volume-off"}}</button></li>
+      <li><button {{action "volumeDown"}} disabled={{player.isNotLoaded}}>{{fa-icon "volume-down"}}</button></li>
+      <li><button {{action "volumeUp"}} disabled={{player.isNotLoaded}}>{{fa-icon "volume-up"}}</button></li>
+    </ul>
   </div>
 </div>
 
