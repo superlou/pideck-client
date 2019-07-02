@@ -1,5 +1,4 @@
-<h1>Media</h1>
-
+<br/>
 <div id="settings">
   {{#link-to "settings"}}{{fa-icon "cog"}} settings{{/link-to}}
 </div>
@@ -17,8 +16,23 @@
   {{/file-upload}}
 </div>
 
+<h2>Video</h2>
 <ul class="media-list">
-  {{#each sortedFiles as |mediaFile|}}
+  {{#each video as |mediaFile|}}
+    <li>
+      <button {{action "play" mediaFile.source}}>{{fa-icon "play"}}</button>
+      {{mediaFile.source}}
+      <div class="actions">
+
+        <button {{action "delete" mediaFile}}>{{fa-icon "trash"}}</button>
+      </div>
+    </li>
+  {{/each}}
+</ul>
+
+<h2>Audio</h2>
+<ul class="media-list">
+  {{#each music as |mediaFile|}}
     <li>
       <button {{action "play" mediaFile.source}}>{{fa-icon "play"}}</button>
       {{mediaFile.source}}
