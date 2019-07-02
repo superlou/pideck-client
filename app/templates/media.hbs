@@ -18,7 +18,7 @@
 </div>
 
 <ul class="media-list">
-  {{#each model as |mediaFile|}}
+  {{#each sortedFiles as |mediaFile|}}
     <li>
       <button {{action "play" mediaFile.source}}>{{fa-icon "play"}}</button>
       {{mediaFile.source}}
