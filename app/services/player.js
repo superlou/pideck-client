@@ -95,6 +95,7 @@ export default Service.extend({
       this.set('position', result.position);
       this.set('duration', result.duration);
       this.set('volume', result.volume);
+      this.set('looping', result.looping);
     }
   },
 
@@ -141,6 +142,16 @@ export default Service.extend({
       method: 'POST',
       data: {
         mode: mode,
+      }
+    });
+  },
+
+  set_looping(state) {
+    this.get('ajax').request(this.get('playerUrl'), {
+      method: 'POST',
+      data: {
+        action: 'set_looping',
+        state: state,
       }
     });
   },

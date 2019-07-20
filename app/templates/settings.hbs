@@ -22,6 +22,13 @@
   <button {{action "changeApiDomain"}}>Save</button>
 </div>
 <div class="settings-row">
+  <span class="settings-label">Loop video:</span>
+  <ul class="button-group">
+    <li><button {{action "setLooping" false}}>Off</button></li>
+    <li><button {{action "setLooping" true}}>On</button></li>
+  </ul>  
+</div>
+<div class="settings-row">
   <span class="settings-label">Display Mode:</span>
   <ul class="button-group">
     <li><button {{action "setDisplayMode" "off"}}>Off</button></li>

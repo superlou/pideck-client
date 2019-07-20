@@ -11,6 +11,10 @@ export default Route.extend({
   actions: {
     setDisplayMode(mode) {
       this.get('player').set_display_mode(mode);
+    },
+
+    setLooping(state) {
+      this.get('player').set_looping(state);
     }
   }
 });

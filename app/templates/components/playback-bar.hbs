@@ -3,7 +3,12 @@
 <div class="timings">
   {{#if isLoaded}}
     <span class="left">{{format-seconds position}}</span>
-    <span class="center">{{format-seconds duration}}</span>
+    <span class="center">
+      {{format-seconds duration}}
+      {{#if looping}}
+        {{fa-icon "undo" title="Video will loop"}}
+      {{/if}}
+    </span>
     <span class="right">{{format-seconds remaining}}</span>
   {{/if}}
 </div>
